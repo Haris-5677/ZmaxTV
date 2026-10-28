@@ -1,0 +1,1085 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF000000">
+
+    <!-- Time-of-day backdrop, drawn once a minute (config.xml sky_intensity; 0 keeps it hidden). -->
+    <com.gathin.tvhome.SkyView
+        android:id="@+id/sky"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no" />
+
+    <!-- Cinematic top shelf (cinematic_home): the focused dock app's artwork, a few pixels across and
+         stretched over the screen, which softens it like a blur without the cost of one. Hidden otherwise. -->
+    <ImageView
+        android:id="@+id/heroArt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:alpha="0"
+        android:visibility="gone"
+        android:importantForAccessibility="no" />
+
+    <!-- Ambient glow in the colour of the focused dock app. -->
+    <View
+        android:id="@+id/ambient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0" />
+
+    <!-- Race-weekend panel (a theme's race_calendar, see RaceWeekend): in the free space under the clock,
+         shown only from shortly before a weekend's first session until the race is over. Updated once a
+         minute with the clock, never animated. -->
+    <LinearLayout
+        android:id="@+id/racePanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="158dp"
+        android:orientation="vertical"
+        android:focusable="false"
+        android:importantForAccessibility="no"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- A short kerb-red bar, the panel's one accent. -->
+            <View
+                android:layout_width="3dp"
+                android:layout_height="13dp"
+                android:layout_marginEnd="10dp"
+                android:id="@+id/raceBar"
+                android:background="@drawable/race_bar" />
+
+            <TextView
+                android:id="@+id/raceKicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="#B3FFFFFF"
+                android:textSize="12sp"
+                android:fontFamily="@string/font_medium"
+                android:letterSpacing="0.22"
+                android:textAllCaps="true" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/raceHeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:singleLine="true"
+            android:textColor="#FFFFFFFF"
+            android:textSize="34sp"
+            android:fontFamily="@string/font_light"
+            android:letterSpacing="-0.01"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:id="@+id/raceSessions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:singleLine="true"
+            android:textColor="#99FFFFFF"
+            android:textSize="12sp"
+            android:fontFamily="@string/font_medium"
+            android:letterSpacing="0.12" />
+
+        <!-- game_day: one dot per turn when the panel rotates between games (and the F1 weekend). -->
+        <LinearLayout
+            android:id="@+id/racePager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Cinematic top shelf: darkens the edge behind the shelf and the lower half, so the text and the
+         dock stay readable over the artwork. -->
+    <View
+        android:id="@+id/heroScrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:importantForAccessibility="no" />
+
+    <!-- Top shelf: the focused dock app's name, positioned above the dock in code. -->
+    <LinearLayout
+        android:id="@+id/hero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:orientation="vertical"
+        android:alpha="0">
+
+        <TextView
+            android:id="@+id/heroName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFFFF"
+            android:textSize="48sp"
+            android:fontFamily="@string/font_light"
+            android:letterSpacing="-0.02"
+            android:includeFontPadding="false"
+            android:singleLine="true" />
+
+        <!-- Cinematic shelf only: when the app was last opened, and the dock position dots. -->
+        <TextView
+            android:id="@+id/heroMeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
+            android:singleLine="true"
+            android:textColor="#B3FFFFFF"
+            android:textSize="15sp"
+            android:fontFamily="@string/font_light"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/heroDots"
+            android:layout_width="wrap_content"
+            android:layout_height="6dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="56dp"
+        android:paddingEnd="56dp"
+        android:paddingTop="26dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <!-- No clipping down to the pills: with advanced effects a focused pill scales up past its row. -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <LinearLayout
+                android:id="@+id/leftBlock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="vertical">
+
+                <!-- Greeting Header: "Good afternoon, Alex 👋" style -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/greeting"
+                        android:gravity="left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="26sp"
+                        android:fontFamily="@string/font_medium"
+                        android:letterSpacing="-0.01"
+                        android:includeFontPadding="false"
+                        android:textAllCaps="false" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="👋"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dashboardSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:singleLine="true"
+                    android:text="Zamax"
+                    android:textColor="#94A3B8"
+                    android:textSize="13sp"
+                    android:fontFamily="@string/font_medium"
+                    android:letterSpacing="0.04" />
+
+                <!-- 2x2 Glass Cards Grid (World Clocks, Currencies & Bangalore Weather) -->
+                <!-- Dashboard Row: 2x2 Clocks on Left + Calendar Widget on Right -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <!-- 2x2 Glass Cards Grid (World Clocks, Currencies & Bangalore Weather) -->
+                    <LinearLayout
+                        android:id="@+id/dashboardGrid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Row 1: India (IST) & Dubai (GST) -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <!-- Card 1: India Time & USD/INR Currency -->
+                            <LinearLayout
+                                android:layout_width="215dp"
+                                android:layout_height="84dp"
+                                android:background="@drawable/dashboard_card_bg"
+                                android:orientation="horizontal"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <!-- Left Column: Title, Time, Status -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center_vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="🇮🇳  INDIA"
+                                        android:textColor="#94A3B8"
+                                        android:textSize="10sp"
+                                        android:fontFamily="@string/font_medium"
+                                        android:letterSpacing="0.1"
+                                        android:textAllCaps="true" />
+
+                                    <TextClock
+                                        android:id="@+id/clock"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:timeZone="Asia/Kolkata"
+                                        android:format12Hour="h:mm a"
+                                        android:format24Hour="HH:mm"
+                                        android:textColor="#FFFFFFFF"
+                                        android:textSize="20sp"
+                                        android:fontFamily="@string/font_medium"
+                                        android:letterSpacing="-0.02"
+                                        android:includeFontPadding="false" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:text="▲ PRIMARY"
+                                        android:textColor="#10B981"
+                                        android:textSize="9sp"
+                                        android:fontFamily="@string/font_medium"
+                                        android:letterSpacing="0.04" />
+                                </LinearLayout>
+
+                                <!-- Right Column: Timezone Tag & Currency Box -->
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:gravity="end|center_vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="IST"
+                                        android:textColor="#CBD5E1"
+                                        android:textSize="9sp"
+                                        android:background="@drawable/dashboard_tag_bg"
+                                        android:paddingStart="6dp"
+                                        android:paddingEnd="6dp"
+                                        android:paddingTop="1dp"
+                                        android:paddingBottom="1dp" />
+
+                                    <!-- Currency Badge -->
+                                    <LinearLayout
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:background="@drawable/dashboard_currency_bg"
+                                        android:paddingStart="6dp"
+                                        android:paddingEnd="6dp"
+                                        android:paddingTop="3dp"
+                                        android:paddingBottom="3dp"
+                                        android:orientation="vertical"
+                                        android:gravity="end">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="USD / INR"
+                                            android:textColor="#94A3B8"
+                                            android:textSize="8sp"
+                                            android:fontFamily="@string/font_medium"
+                                            android:letterSpacing="0.04" />
+
+                                        <TextView
+                                            android:id="@+id/rateUsdInr"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="₹95.17"
+                                            android:textColor="#F59E0B"
+                                            android:textSize="12sp"
+                                            android:fontFamily="@string/font_medium"
+                                            android:includeFontPadding="false" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!-- Card 2: Dubai Time & AED/INR Currency -->
+                            <LinearLayout
+                                android:layout_width="215dp"
+                                android:layout_height="84dp"
+                                android:layout_marginStart="10dp"
+                                android:background="@drawable/dashboard_card_bg"
+                                android:orientation="horizontal"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <!-- Left Column: Title, Time, Status -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center_vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="🇦🇪  DUBAI"
+                                        android:textColor="#94A3B8"
+                                        android:textSize="10sp"
+                                        android:fontFamily="@string/font_medium"
+                                        android:letterSpacing="0.1"
+                                        android:textAllCaps="true" />
+
+                                    <TextClock
+                                        android:id="@+id/clockDubai"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:timeZone="Asia/Dubai"
+                                        android:format12Hour="h:mm a"
+                                        android:format24Hour="HH:mm"
+                                        android:textColor="#FFFFFFFF"
+                                        android:textSize="20sp"
+                                        android:fontFamily="@string/font_medium"
+                                        android:letterSpacing="-0.02"
+                                        android:includeFontPadding="false" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:text="-1h 30m"
+                                        android:textColor="#F59E0B"
+                                        android:textSize="9sp"
+                                        android:fontFamily="@string/font_medium"
+                                        android:letterSpacing="0.04" />
+                                </LinearLayout>
+
+                                <!-- Right Column: Timezone Tag & Currency Box -->
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:gravity="end|center_vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="GST"
+                                        android:textColor="#CBD5E1"
+                                        android:textSize="9sp"
+                                        android:background="@drawable/dashboard_tag_bg"
+                                        android:paddingStart="6dp"
+                                        android:paddingEnd="6dp"
+                                        android:paddingTop="1dp"
+                                        android:paddingBottom="1dp" />
+
+                                    <!-- Currency Badge -->
+                                    <LinearLayout
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:background="@drawable/dashboard_currency_bg"
+                                        android:paddingStart="6dp"
+                                        android:paddingEnd="6dp"
+                                        android:paddingTop="3dp"
+                                        android:paddingBottom="3dp"
+                                        android:orientation="vertical"
+                                        android:gravity="end">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="AED / INR"
+                                            android:textColor="#94A3B8"
+                                            android:textSize="8sp"
+                                            android:fontFamily="@string/font_medium"
+                                            android:letterSpacing="0.04" />
+
+                                        <TextView
+                                            android:id="@+id/rateAedInr"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="₹25.90"
+                                            android:textColor="#F59E0B"
+                                            android:textSize="12sp"
+                                            android:fontFamily="@string/font_medium"
+                                            android:includeFontPadding="false" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Row 2: Saudi Arabia (AST) & Bangalore Weather -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                            <!-- Card 3: Saudi Arabia Time & SAR/INR Currency -->
+                            <LinearLayout
+                                android:layout_width="215dp"
+                                android:layout_height="84dp"
+                                android:background="@drawable/dashboard_card_bg"
+                                android:orientation="horizontal"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <!-- Left Column: Title, Time, Status -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center_vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="🇸🇦  SAUDI ARABIA"
+                                        android:textColor="#94A3B8"
+                                        android:textSize="10sp"
+                                        android:fontFamily="@string/font_medium"
+                                        android:letterSpacing="0.1"
+                                        android:textAllCaps="true" />
+
+                                    <TextClock
+                                        android:id="@+id/clockSaudi"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:timeZone="Asia/Riyadh"
+                                        android:format12Hour="h:mm a"
+                                        android:format24Hour="HH:mm"
+                                        android:textColor="#FFFFFFFF"
+                                        android:textSize="20sp"
+                                        android:fontFamily="@string/font_medium"
+                                        android:letterSpacing="-0.02"
+                                        android:includeFontPadding="false" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:text="-2h 30m"
+                                        android:textColor="#F59E0B"
+                                        android:textSize="9sp"
+                                        android:fontFamily="@string/font_medium"
+                                        android:letterSpacing="0.04" />
+                                </LinearLayout>
+
+                                <!-- Right Column: Timezone Tag & Currency Box -->
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:gravity="end|center_vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="AST"
+                                        android:textColor="#CBD5E1"
+                                        android:textSize="9sp"
+                                        android:background="@drawable/dashboard_tag_bg"
+                                        android:paddingStart="6dp"
+                                        android:paddingEnd="6dp"
+                                        android:paddingTop="1dp"
+                                        android:paddingBottom="1dp" />
+
+                                    <!-- Currency Badge -->
+                                    <LinearLayout
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:background="@drawable/dashboard_currency_bg"
+                                        android:paddingStart="6dp"
+                                        android:paddingEnd="6dp"
+                                        android:paddingTop="3dp"
+                                        android:paddingBottom="3dp"
+                                        android:orientation="vertical"
+                                        android:gravity="end">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="SAR / INR"
+                                            android:textColor="#94A3B8"
+                                            android:textSize="8sp"
+                                            android:fontFamily="@string/font_medium"
+                                            android:letterSpacing="0.04" />
+
+                                        <TextView
+                                            android:id="@+id/rateSarInr"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="₹25.34"
+                                            android:textColor="#F59E0B"
+                                            android:textSize="12sp"
+                                            android:fontFamily="@string/font_medium"
+                                            android:includeFontPadding="false" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!-- Card 4: Bangalore Weather & Temp -->
+                            <LinearLayout
+                                android:layout_width="215dp"
+                                android:layout_height="84dp"
+                                android:layout_marginStart="10dp"
+                                android:background="@drawable/dashboard_card_bg"
+                                android:orientation="horizontal"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <!-- Left Column: Title, Temp, Condition -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center_vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="🌤️  BANGALORE"
+                                        android:textColor="#94A3B8"
+                                        android:textSize="10sp"
+                                        android:fontFamily="@string/font_medium"
+                                        android:letterSpacing="0.1"
+                                        android:textAllCaps="true" />
+
+                                    <TextView
+                                        android:id="@+id/bangaloreTemp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:text="28°C"
+                                        android:textColor="#FFFFFFFF"
+                                        android:textSize="20sp"
+                                        android:fontFamily="@string/font_medium"
+                                        android:letterSpacing="-0.02"
+                                        android:includeFontPadding="false" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:orientation="horizontal"
+                                        android:gravity="center_vertical">
+
+                                        <TextView
+                                            android:id="@+id/bangaloreCondition"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Partly Cloudy"
+                                            android:textColor="#38BDF8"
+                                            android:textSize="9sp"
+                                            android:fontFamily="@string/font_medium"
+                                            android:letterSpacing="0.02" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="4dp"
+                                            android:text="· H:29° L:21°"
+                                            android:textColor="#64748B"
+                                            android:textSize="8.5sp"
+                                            android:fontFamily="@string/font_regular" />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <!-- Right Column: LIVE tag & Weather Icon -->
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:gravity="end|center_vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="LIVE"
+                                        android:textColor="#10B981"
+                                        android:textSize="9sp"
+                                        android:textStyle="bold"
+                                        android:background="@drawable/dashboard_tag_bg"
+                                        android:paddingStart="6dp"
+                                        android:paddingEnd="6dp"
+                                        android:paddingTop="1dp"
+                                        android:paddingBottom="1dp" />
+
+                                    <ImageView
+                                        android:layout_width="26dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginTop="4dp"
+                                        android:src="@drawable/ic_weather_partly_cloudy" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Calendar Widget (Height 176dp matches 2 rows of 84dp + 8dp gap) -->
+                    <LinearLayout
+                        android:id="@+id/calendarWidget"
+                        android:layout_width="320dp"
+                        android:layout_height="176dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/dashboard_card_focusable_bg"
+                        android:orientation="vertical"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingTop="9dp"
+                        android:paddingBottom="9dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true">
+
+                        <!-- Top Header: Title & Status Tag -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="📅  GOOGLE CALENDAR"
+                                android:textColor="#94A3B8"
+                                android:textSize="10sp"
+                                android:fontFamily="@string/font_medium"
+                                android:letterSpacing="0.1"
+                                android:textAllCaps="true" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:id="@+id/calSyncStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="● GOOGLE"
+                                android:textColor="#10B981"
+                                android:textSize="9sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/dashboard_tag_bg"
+                                android:paddingStart="6dp"
+                                android:paddingEnd="6dp"
+                                android:paddingTop="1dp"
+                                android:paddingBottom="1dp" />
+                        </LinearLayout>
+
+                        <!-- Body: Two Columns (Mini Month Grid on Left, Events on Right) -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <!-- Left Column: Mini Month Calendar View (~132dp) -->
+                            <LinearLayout
+                                android:layout_width="132dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/calMonthYear"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="OCTOBER 2026"
+                                    android:textColor="#FFFFFFFF"
+                                    android:textSize="10.5sp"
+                                    android:fontFamily="@string/font_medium"
+                                    android:letterSpacing="0.04" />
+
+                                <!-- Day of week headers: S M T W T F S -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical">
+
+                                    <TextView
+                                        android:layout_width="17dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="#64748B"
+                                        android:textSize="8sp" />
+                                    <TextView
+                                        android:layout_width="17dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="2dp"
+                                        android:gravity="center"
+                                        android:text="M"
+                                        android:textColor="#64748B"
+                                        android:textSize="8sp" />
+                                    <TextView
+                                        android:layout_width="17dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="2dp"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="#64748B"
+                                        android:textSize="8sp" />
+                                    <TextView
+                                        android:layout_width="17dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="2dp"
+                                        android:gravity="center"
+                                        android:text="W"
+                                        android:textColor="#64748B"
+                                        android:textSize="8sp" />
+                                    <TextView
+                                        android:layout_width="17dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="2dp"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="#64748B"
+                                        android:textSize="8sp" />
+                                    <TextView
+                                        android:layout_width="17dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="2dp"
+                                        android:gravity="center"
+                                        android:text="F"
+                                        android:textColor="#64748B"
+                                        android:textSize="8sp" />
+                                    <TextView
+                                        android:layout_width="17dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="2dp"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="#64748B"
+                                        android:textSize="8sp" />
+                                </LinearLayout>
+
+                                <!-- Month Days Grid (populated dynamically) -->
+                                <GridLayout
+                                    android:id="@+id/calGridDays"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:columnCount="7" />
+                            </LinearLayout>
+
+                            <!-- Vertical Divider -->
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="#1E293B" />
+
+                            <!-- Right Column: Agenda & Google Calendar Events -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/calTodayDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Wed, 28 Oct"
+                                    android:textColor="#38BDF8"
+                                    android:textSize="10sp"
+                                    android:fontFamily="@string/font_medium"
+                                    android:letterSpacing="0.04" />
+
+                                <!-- Event 1 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/calEv1Time"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="TODAY"
+                                        android:textColor="#F59E0B"
+                                        android:textSize="8sp"
+                                        android:fontFamily="@string/font_medium" />
+
+                                    <TextView
+                                        android:id="@+id/calEv1Title"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:ellipsize="end"
+                                        android:text="Loading..."
+                                        android:textColor="#FFFFFFFF"
+                                        android:textSize="9.5sp"
+                                        android:fontFamily="@string/font_medium" />
+                                </LinearLayout>
+
+                                <!-- Event 2 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/calEv2Time"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=""
+                                        android:textColor="#38BDF8"
+                                        android:textSize="8sp"
+                                        android:fontFamily="@string/font_medium" />
+
+                                    <TextView
+                                        android:id="@+id/calEv2Title"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:ellipsize="end"
+                                        android:text=""
+                                        android:textColor="#FFFFFFFF"
+                                        android:textSize="9.5sp"
+                                        android:fontFamily="@string/font_medium" />
+                                </LinearLayout>
+
+                                <!-- Event 3 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/calEv3Time"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=""
+                                        android:textColor="#10B981"
+                                        android:textSize="8sp"
+                                        android:fontFamily="@string/font_medium" />
+
+                                    <TextView
+                                        android:id="@+id/calEv3Title"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:ellipsize="end"
+                                        android:text=""
+                                        android:textColor="#FFFFFFFF"
+                                        android:textSize="9.5sp"
+                                        android:fontFamily="@string/font_medium" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Hidden compatibility anchors so existing Java references never throw NPE -->
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone" />
+
+                <View
+                    android:id="@+id/clockDivider"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone" />
+
+                <TextClock
+                    android:id="@+id/ampm"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/shamsiDate"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/lunarDate"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <!-- Shown only when show_stats is on. Outside leftBlock, so the top buttons stay level with the clock
+                 row; gone, it takes no space. -->
+            <TextView
+                android:id="@+id/stats"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/leftBlock"
+                android:layout_alignStart="@id/leftBlock"
+                android:gravity="left"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#D9FFFFFF"
+                android:textSize="14sp"
+                android:fontFamily="@string/font_medium"
+                android:letterSpacing="0.04"
+                android:focusable="false"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/topButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/leftBlock"
+                android:layout_marginTop="4dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnInputs"
+                    style="@style/TopButton"
+                    android:text="@string/inputs"
+                    android:drawableStart="@drawable/ic_input"
+                    android:nextFocusDown="@+id/grid" />
+
+                <TextView
+                    android:id="@+id/btnWifi"
+                    style="@style/TopButton"
+                    android:maxWidth="180dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="@string/wifi"
+                    android:drawableStart="@drawable/ic_wifi"
+                    android:nextFocusDown="@+id/grid" />
+
+                <TextView
+                    android:id="@+id/btnVpn"
+                    style="@style/TopButton"
+                    android:visibility="gone"
+                    android:singleLine="true"
+                    android:text="@string/vpn"
+                    android:nextFocusDown="@+id/grid" />
+
+                <TextView
+                    android:id="@+id/btnReorder"
+                    style="@style/TopButtonIcon"
+                    android:contentDescription="@string/reorder"
+                    android:drawableStart="@drawable/ic_swap_vert"
+                    android:nextFocusDown="@+id/grid" />
+
+                <TextView
+                    android:id="@+id/btnLibraryTop"
+                    style="@style/TopButtonIcon"
+                    android:visibility="gone"
+                    android:contentDescription="@string/app_library"
+                    android:drawableStart="@drawable/ic_apps_pill"
+                    android:nextFocusDown="@+id/grid" />
+
+                <TextView
+                    android:id="@+id/btnSettings"
+                    style="@style/TopButton"
+                    android:text="@string/settings"
+                    android:drawableStart="@drawable/ic_settings"
+                    android:nextFocusDown="@+id/grid" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- The wrapper clips at the grid's edge; the grid itself must not clip so scaled tiles can overflow their cells. -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/grid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:paddingBottom="40dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:descendantFocusability="afterDescendants" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- The single floating glass highlight that springs between tiles. -->
+    <com.gathin.tvhome.GlassView
+        android:id="@+id/glass"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:alpha="0"
+        android:importantForAccessibility="no" />
+</FrameLayout>

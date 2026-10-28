@@ -1,0 +1,26 @@
+{
+  "name": "stable Zamax TV",
+  "timestamp": "2026-10-28T17:02:52.982328",
+  "device": {
+    "model": "TCL UnionTV (Realtek RT2841)",
+    "android_version": "9 (Pie)",
+    "api_level": 28,
+    "endpoint": "192.168.1.11:5555",
+    "default_launcher": "com.gathin.tvhome (Zamax TV)"
+  },
+  "packages": {
+    "launcher": {
+      "package": "com.gathin.tvhome",
+      "version": "3.1",
+      "apk": "apks/HomeScreen.apk",
+      "features": [
+        "Zamax branding",
+        "IST/GST/AST World Clocks",
+        "Google Finance USD/AED/SAR live rates",
+        "Bangalore weather",
+        "Modern luxury villa wallpaper"
+      ]
+    }
+  },
+  "restore_instructions": "Run restore-tv.ps1 or restore-tv.bat to re-apply this configuration at any time."
+}

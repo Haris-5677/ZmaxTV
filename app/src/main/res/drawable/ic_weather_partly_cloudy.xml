@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="28dp"
+    android:height="22dp"
+    android:viewportWidth="28"
+    android:viewportHeight="22">
+    <!-- Sun behind cloud -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M 17,7 A 5,5 0 1,0 17,8 Z" />
+    <path
+        android:strokeColor="#FBBF24"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:pathData="M 17,1 L 17,2.5 M 22,3 L 21,4.2 M 23,7 L 21.5,7 M 12,3 L 13,4.2" />
+    <!-- Crisp Cloud in foreground -->
+    <path
+        android:fillColor="#E2E8F0"
+        android:pathData="M 7,19 C 4.5,19 2.5,17 2.5,14.5 C 2.5,12.2 4.1,10.3 6.3,10.1 C 7.2,7.3 9.8,5.5 13,5.5 C 16.8,5.5 19.8,8.2 20.3,11.8 C 21.9,12.1 23,13.4 23,15 C 23,17.2 21.2,19 19,19 Z" />
+</vector>

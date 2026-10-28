@@ -1,0 +1,4 @@
+package:tv.airtel.xstream.tvapp  installer=com.android.vending
+package:in.startv.hotstar  installer=com.android.vending
+package:com.graymatrix.did  installer=com.android.vending
+package:com.gathin.tvhome  installer=null

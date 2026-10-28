@@ -1,0 +1,19 @@
+# Built binaries and caches
+.gradle/
+build/
+app/build/
+*.apk
+*.aab
+!release/HomeScreen.apk
+
+# Local configuration
+local.properties
+.idea/
+*.iml
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+tools/venv/
+tools/adbkey/

@@ -1,0 +1,377 @@
+WINDOW MANAGER DISPLAY CONTENTS (dumpsys window displays)
+  Display: mDisplayId=0
+    init=1280x720 213dpi cur=1280x720 app=1280x720 rng=720x720-1280x1280
+    deferred=false mLayoutNeeded=false mTouchExcludeRegion=SkRegion((0,0,1280,720))
+
+  mLayoutSeq=954
+
+  Application tokens in top down Z order:
+    mStackId=0
+    mDeferRemoval=false
+    mBounds=[0,0][1280,720]
+      taskId=3143
+        mBounds=[0,0][1280,720]
+        mdr=false
+        appTokens=[AppWindowToken{858384d token=Token{8998be4 ActivityRecord{43a2377 u0 com.gathin.tvhome/.MainActivity t3143}}}]
+        mTempInsetBounds=[0,0][0,0]
+          Activity #0 AppWindowToken{858384d token=Token{8998be4 ActivityRecord{43a2377 u0 com.gathin.tvhome/.MainActivity t3143}}}
+            windows=[Window{ea6d5f u0 com.gathin.tvhome/com.gathin.tvhome.MainActivity}]
+            windowType=2 hidden=false hasVisible=true
+            app=true mVoiceInteraction=false
+            task={taskId=3143 appTokens=[AppWindowToken{858384d token=Token{8998be4 ActivityRecord{43a2377 u0 com.gathin.tvhome/.MainActivity t3143}}}] mdr=false}
+             mFillsParent=true mOrientation=0
+            hiddenRequested=false mClientHidden=false reportedDrawn=true reportedVisible=true
+            mNumInterestingWindows=1 mNumDrawnWindows=1 inPendingTransaction=false allDrawn=true lastAllDrawn=true)
+            startingData=null removed=false firstWindowDrawn=true mIsExiting=false
+            controller=AppWindowContainerController{ token=Token{8998be4 ActivityRecord{43a2377 u0 com.gathin.tvhome/.MainActivity t3143}} mContainer=AppWindowToken{858384d token=Token{8998be4 ActivityRecord{43a2377 u0 com.gathin.tvhome/.MainActivity t3143}}} mListener=ActivityRecord{43a2377 u0 com.gathin.tvhome/.MainActivity t3143}}
+    mStackId=1
+    mDeferRemoval=false
+    mBounds=[0,0][1280,720]
+      taskId=3114
+        mBounds=[0,0][1280,720]
+        mdr=false
+        appTokens=[AppWindowToken{a8f1d24 token=Token{db231b7 ActivityRecord{6a740b6 u0 com.netflix.ninja/.MainActivity t3114}}}]
+        mTempInsetBounds=[0,0][0,0]
+          Activity #0 AppWindowToken{a8f1d24 token=Token{db231b7 ActivityRecord{6a740b6 u0 com.netflix.ninja/.MainActivity t3114}}}
+            windows=[Window{d72fbd8 u0 com.netflix.ninja/com.netflix.ninja.MainActivity}]
+            windowType=2 hidden=true hasVisible=true
+            app=true mVoiceInteraction=false
+            task={taskId=3114 appTokens=[AppWindowToken{a8f1d24 token=Token{db231b7 ActivityRecord{6a740b6 u0 com.netflix.ninja/.MainActivity t3114}}}] mdr=false}
+             mFillsParent=true mOrientation=-1
+            hiddenRequested=true mClientHidden=true reportedDrawn=false reportedVisible=false
+            mAppStopped=true
+            mNumInterestingWindows=1 mNumDrawnWindows=1 inPendingTransaction=false allDrawn=true lastAllDrawn=true)
+            startingData=null removed=false firstWindowDrawn=true mIsExiting=false
+            controller=AppWindowContainerController{ token=Token{db231b7 ActivityRecord{6a740b6 u0 com.netflix.ninja/.MainActivity t3114}} mContainer=AppWindowToken{a8f1d24 token=Token{db231b7 ActivityRecord{6a740b6 u0 com.netflix.ninja/.MainActivity t3114}}} mListener=ActivityRecord{6a740b6 u0 com.netflix.ninja/.MainActivity t3114}}
+    mStackId=8
+    mDeferRemoval=false
+    mBounds=[0,0][1280,720]
+      taskId=3126
+        mBounds=[0,0][1280,720]
+        mdr=false
+        appTokens=[AppWindowToken{27bc307 token=Token{5620546 ActivityRecord{a90fd21 u0 com.tcl.tv/.TVActivity t3126}}}]
+        mTempInsetBounds=[0,0][0,0]
+          Activity #0 AppWindowToken{27bc307 token=Token{5620546 ActivityRecord{a90fd21 u0 com.tcl.tv/.TVActivity t3126}}}
+            windows=[Window{d522c u0 com.tcl.tv/com.tcl.tv.TVActivity}]
+            windowType=2 hidden=true hasVisible=true
+            app=true mVoiceInteraction=false
+            task={taskId=3126 appTokens=[AppWindowToken{27bc307 token=Token{5620546 ActivityRecord{a90fd21 u0 com.tcl.tv/.TVActivity t3126}}}] mdr=false}
+             mFillsParent=true mOrientation=5
+            hiddenRequested=true mClientHidden=true reportedDrawn=false reportedVisible=false
+            mAppStopped=true
+            mNumInterestingWindows=2 mNumDrawnWindows=2 inPendingTransaction=false allDrawn=true lastAllDrawn=true)
+            startingData=null removed=false firstWindowDrawn=true mIsExiting=false
+            controller=AppWindowContainerController{ token=Token{5620546 ActivityRecord{a90fd21 u0 com.tcl.tv/.TVActivity t3126}} mContainer=AppWindowToken{27bc307 token=Token{5620546 ActivityRecord{a90fd21 u0 com.tcl.tv/.TVActivity t3126}}} mListener=ActivityRecord{a90fd21 u0 com.tcl.tv/.TVActivity t3126}}
+
+
+  homeStack=Stack=0
+
+  DockedStackDividerController
+    mLastVisibility=false
+    mMinimizedDock=false
+    mAdjustedForIme=false
+    mAdjustedForDivider=false
+
+  PinnedStackController
+    defaultBounds=[913,520][1206,685]
+    movementBounds=[74,35][1206,685]
+    mIsImeShowing=false
+    mImeHeight=0
+    mIsShelfShowing=false
+    mShelfHeight=0
+    mReentrySnapFraction=-1.0
+    mIsMinimized=false
+    mActions=[]
+   mDisplayInfo=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1280 x 720, real 1280 x 720, largest app 1280 x 1280, smallest app 720 x 720, mode 1, defaultMode 1, modes [{id=1, width=1280, height=720, fps=60.000004}], colorMode 0, supportedColorModes [0], hdrCapabilities android.view.Display$HdrCapabilities@413e3a39, rotation 0, density 213 (37.029 x 37.707) dpi, layerStack 0, appVsyncOff 1000000, presDeadline 16666666, type BUILT_IN, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS, removeMode 0}
+
+  DisplayFrames w=1280 h=720 r=0
+    mStable=[0,0][1280,720]
+    mStableFullscreen=[0,0][1280,720]
+    mDock=[0,0][1280,720]
+    mCurrent=[0,0][1280,720]
+    mSystem=[0,0][1280,720]
+    mContent=[0,0][1280,720]
+    mVoiceContent=[0,0][1280,720]
+    mOverscan=[0,0][1280,720]
+    mRestrictedOverscan=[0,0][1280,720]
+    mRestricted=[0,0][1280,720]
+    mUnrestricted=[0,0][1280,720]
+    mDisplayInfoOverscan=[0,0][0,0]
+    mRotatedDisplayInfoOverscan=[0,0][0,0]
+    mDisplayCutout=com.android.server.wm.utils.WmDisplayCutout@3c1
+--- MEMINFO ---
+Applications Memory Usage (in Kilobytes):
+Uptime: 10680952 Realtime: 10680952
+
+Total PSS by process:
+    168,869K: com.netflix.ninja (pid 1860 / activities)
+     75,083K: com.google.android.youtube.tv (pid 10771)
+     68,610K: system (pid 571)
+     67,100K: com.google.android.gms (pid 1183)
+     43,607K: com.android.vending (pid 10104)
+     34,866K: sitatvservice (pid 289)
+     29,973K: com.google.android.gms.unstable (pid 10898)
+     25,535K: com.tcl.tv (pid 1403 / activities)
+     20,438K: com.gathin.tvhome (pid 13428 / activities)
+     19,812K: com.android.tv.settings (pid 1958)
+     18,558K: com.android.vending:background (pid 12890)
+     16,258K: com.google.android.apps.mediashell (pid 2146)
+     11,608K: rtkd (pid 253)
+     11,145K: com.android.systemui (pid 839)
+     10,998K: logd (pid 198)
+      8,474K: com.tcl.framework.custom (pid 1333)
+      8,035K: com.google.android.packageinstaller (pid 12946)
+      7,796K: com.android.bluetooth (pid 800)
+      6,639K: com.tcl.tv:privileged_process0 (pid 7108)
+      6,400K: com.tcl.keycustomfunctionservice (pid 907)
+      6,347K: com.tcl.initsetup (pid 7300)
+      5,529K: tmmgr (pid 310)
+      5,384K: media.codec (pid 330)
+      4,973K: com.tcl.settings (pid 6376)
+      4,893K: audioserver (pid 257)
+      4,861K: com.google.android.tv.remote.service (pid 1058)
+      4,617K: com.tcl.tvpassthrough (pid 1295)
+      4,595K: com.tcl.tvinput (pid 1290)
+      4,248K: com.tcl.inputmethod.international (pid 11395)
+      4,059K: surfaceflinger (pid 259)
+      3,522K: android.process.media (pid 13026)
+      3,498K: com.google.process.gservices (pid 13658)
+      3,343K: com.android.providers.tv (pid 7054)
+      3,216K: vendor.realtek.tv@1.0-service (pid 250)
+      3,136K: android.hardware.drm@1.1-service.widevine (pid 231)
+      2,984K: media.extractor (pid 319)
+      2,970K: com.android.keychain (pid 12981)
+      2,943K: com.android.ListenNetStateService (pid 11340)
+      2,915K: com.tcl.sourcemananger (pid 6342)
+      2,882K: android.hardware.audio@2.0-service (pid 224)
+      2,833K: com.android.defcontainer (pid 12873)
+      2,793K: com.google.android.webview:webview_service (pid 13141)
+      2,659K: android.hardware.graphics.composer@2.1-service (pid 234)
+      2,573K: com.android.se (pid 1375)
+      2,554K: android.hardware.power@1.0-service (pid 240)
+      2,397K: netd (pid 219)
+      2,281K: installd (pid 316)
+      2,275K: mediaserver (pid 322)
+      2,202K: vendor.realtek.media@1.0-service (pid 248)
+      1,963K: cameraserver (pid 313)
+      1,962K: adbd (pid 307)
+      1,960K: --type=child (pid 386)
+      1,936K: zygote (pid 220)
+      1,860K: mediadrmserver (pid 318)
+      1,831K: vendor.realtek.ginga@1.0-service (pid 246)
+      1,654K: storaged (pid 324)
+      1,624K: media.metrics (pid 320)
+      1,582K: wpa_supplicant (pid 816)
+      1,503K: android.hardware.camera.provider@2.4-service (pid 226)
+      1,433K: drmserver (pid 314)
+      1,387K: vold (pid 206)
+      1,312K: vendor.realtek.input@1.0-service (pid 247)
+      1,304K: /init (pid 1)
+      1,276K: rtkd (pid 374)
+      1,253K: android.hardware.drm@1.0-service (pid 229)
+      1,213K: statsd (pid 323)
+      1,168K: dumpsys (pid 14006)
+      1,070K: keystore (pid 317)
+      1,066K: wificond (pid 328)
+      1,017K: hwservicemanager (pid 200)
+        996K: mdnsd (pid 349)
+        985K: appmanager (pid 290)
+        935K: android.hardware.drm@1.1-service.clearkey (pid 230)
+        915K: vendor.realtek.system@1.0-service (pid 249)
+        867K: android.hardware.graphics.allocator@2.0-service (pid 233)
+        860K: android.hardware.bluetooth@1.0-service (pid 225)
+        846K: android.hardware.wifi@1.0-service (pid 245)
+        835K: gatekeeperd (pid 336)
+        806K: /init (pid 167)
+        780K: incidentd (pid 315)
+        778K: ueventd (pid 170)
+        727K: securetimeservice (pid 333)
+        696K: android.hardware.keymaster@3.0-service (pid 204)
+        694K: healthd (pid 223)
+        691K: crmservice (pid 331)
+        687K: thermalserviced (pid 260)
+        681K: sh (pid 14002)
+        666K: /init (pid 168)
+        651K: android.hardware.cas@1.0-service (pid 227)
+        643K: android.hardware.tv.cec@1.0-service (pid 242)
+        626K: servicemanager (pid 199)
+        623K: rtk_burn_key (pid 335)
+        605K: android.hardware.configstore@1.1-service (pid 228)
+        596K: vendor.tcl.input@1.0-service (pid 251)
+        587K: android.hardware.gatekeeper@1.0-service (pid 232)
+        570K: android.hidl.allocator@1.0-service (pid 222)
+        560K: sserver (pid 309)
+        559K: vndservicemanager (pid 201)
+        555K: ip6tables-restore (pid 1561)
+        551K: iptables-restore (pid 1553)
+        545K: android.hardware.tv.input@1.0-service (pid 243)
+        537K: android.hardware.memtrack@1.0-service (pid 238)
+        528K: android.hardware.usb@1.0-service (pid 244)
+        515K: android.hardware.thermal@1.0-service (pid 241)
+        507K: android.hardware.light@2.0-service (pid 235)
+        504K: motionclient (pid 312)
+        474K: sh (pid 175)
+        454K: lmkd (pid 258)
+        445K: vr_bee_hidraw_daemon (pid 332)
+        423K: tombstoned (pid 337)
+        406K: watchdogd (pid 254)
+        400K: tee-supplicant (pid 334)
+        367K: log_out (pid 288)
+
+Total PSS by OOM adjustment:
+    166,316K: Native
+         34,866K: sitatvservice (pid 289)
+         11,608K: rtkd (pid 253)
+         10,998K: logd (pid 198)
+          5,529K: tmmgr (pid 310)
+          5,384K: media.codec (pid 330)
+          4,893K: audioserver (pid 257)
+          4,059K: surfaceflinger (pid 259)
+          3,343K: com.android.providers.tv (pid 7054)
+          3,216K: vendor.realtek.tv@1.0-service (pid 250)
+          3,136K: android.hardware.drm@1.1-service.widevine (pid 231)
+          2,984K: media.extractor (pid 319)
+          2,882K: android.hardware.audio@2.0-service (pid 224)
+          2,659K: android.hardware.graphics.composer@2.1-service (pid 234)
+          2,554K: android.hardware.power@1.0-service (pid 240)
+          2,397K: netd (pid 219)
+          2,281K: installd (pid 316)
+          2,275K: mediaserver (pid 322)
+          2,202K: vendor.realtek.media@1.0-service (pid 248)
+          1,963K: cameraserver (pid 313)
+          1,962K: adbd (pid 307)
+          1,960K: --type=child (pid 386)
+          1,936K: zygote (pid 220)
+          1,860K: mediadrmserver (pid 318)
+          1,831K: vendor.realtek.ginga@1.0-service (pid 246)
+          1,654K: storaged (pid 324)
+          1,624K: media.metrics (pid 320)
+          1,582K: wpa_supplicant (pid 816)
+          1,503K: android.hardware.camera.provider@2.4-service (pid 226)
+          1,433K: drmserver (pid 314)
+          1,387K: vold (pid 206)
+          1,312K: vendor.realtek.input@1.0-service (pid 247)
+          1,304K: /init (pid 1)
+          1,276K: rtkd (pid 374)
+          1,253K: android.hardware.drm@1.0-service (pid 229)
+          1,213K: statsd (pid 323)
+          1,168K: dumpsys (pid 14006)
+          1,070K: keystore (pid 317)
+          1,066K: wificond (pid 328)
+          1,017K: hwservicemanager (pid 200)
+            996K: mdnsd (pid 349)
+            985K: appmanager (pid 290)
+            935K: android.hardware.drm@1.1-service.clearkey (pid 230)
+            915K: vendor.realtek.system@1.0-service (pid 249)
+            867K: android.hardware.graphics.allocator@2.0-service (pid 233)
+            860K: android.hardware.bluetooth@1.0-service (pid 225)
+            846K: android.hardware.wifi@1.0-service (pid 245)
+            835K: gatekeeperd (pid 336)
+            806K: /init (pid 167)
+            780K: incidentd (pid 315)
+            778K: ueventd (pid 170)
+            727K: securetimeservice (pid 333)
+            696K: android.hardware.keymaster@3.0-service (pid 204)
+            694K: healthd (pid 223)
+            691K: crmservice (pid 331)
+            687K: thermalserviced (pid 260)
+            681K: sh (pid 14002)
+            666K: /init (pid 168)
+            651K: android.hardware.cas@1.0-service (pid 227)
+            643K: android.hardware.tv.cec@1.0-service (pid 242)
+            626K: servicemanager (pid 199)
+            623K: rtk_burn_key (pid 335)
+            605K: android.hardware.configstore@1.1-service (pid 228)
+            596K: vendor.tcl.input@1.0-service (pid 251)
+            587K: android.hardware.gatekeeper@1.0-service (pid 232)
+            570K: android.hidl.allocator@1.0-service (pid 222)
+            560K: sserver (pid 309)
+            559K: vndservicemanager (pid 201)
+            555K: ip6tables-restore (pid 1561)
+            551K: iptables-restore (pid 1553)
+            545K: android.hardware.tv.input@1.0-service (pid 243)
+            537K: android.hardware.memtrack@1.0-service (pid 238)
+            528K: android.hardware.usb@1.0-service (pid 244)
+            515K: android.hardware.thermal@1.0-service (pid 241)
+            507K: android.hardware.light@2.0-service (pid 235)
+            504K: motionclient (pid 312)
+            474K: sh (pid 175)
+            454K: lmkd (pid 258)
+            445K: vr_bee_hidraw_daemon (pid 332)
+            423K: tombstoned (pid 337)
+            406K: watchdogd (pid 254)
+            400K: tee-supplicant (pid 334)
+            367K: log_out (pid 288)
+     68,610K: System
+         68,610K: system (pid 571)
+     54,127K: Persistent
+         25,535K: com.tcl.tv (pid 1403 / activities)
+         11,145K: com.android.systemui (pid 839)
+          8,474K: com.tcl.framework.custom (pid 1333)
+          6,400K: com.tcl.keycustomfunctionservice (pid 907)
+          2,573K: com.android.se (pid 1375)
+     14,435K: Persistent Service
+          7,796K: com.android.bluetooth (pid 800)
+          6,639K: com.tcl.tv:privileged_process0 (pid 7108)
+     20,438K: Foreground
+         20,438K: com.gathin.tvhome (pid 13428 / activities)
+     81,173K: Visible
+         67,100K: com.google.android.gms (pid 1183)
+          4,861K: com.google.android.tv.remote.service (pid 1058)
+          4,617K: com.tcl.tvpassthrough (pid 1295)
+          4,595K: com.tcl.tvinput (pid 1290)
+     20,506K: Perceptible
+         16,258K: com.google.android.apps.mediashell (pid 2146)
+          4,248K: com.tcl.inputmethod.international (pid 11395)
+    168,869K: Previous
+        168,869K: com.netflix.ninja (pid 1860 / activities)
+    102,682K: B Services
+         43,607K: com.android.vending (pid 10104)
+         29,973K: com.google.android.gms.unstable (pid 10898)
+         19,812K: com.android.tv.settings (pid 1958)
+          6,347K: com.tcl.initsetup (pid 7300)
+          2,943K: com.android.ListenNetStateService (pid 11340)
+    125,180K: Cached
+         75,083K: com.google.android.youtube.tv (pid 10771)
+         18,558K: com.android.vending:background (pid 12890)
+          8,035K: com.google.android.packageinstaller (pid 12946)
+          4,973K: com.tcl.settings (pid 6376)
+          3,522K: android.process.media (pid 13026)
+          3,498K: com.google.process.gservices (pid 13658)
+          2,970K: com.android.keychain (pid 12981)
+          2,915K: com.tcl.sourcemananger (pid 6342)
+          2,833K: com.android.defcontainer (pid 12873)
+          2,793K: com.google.android.webview:webview_service (pid 13141)
+
+Total PSS by category:
+    127,489K: Native
+    108,481K: Unknown
+     68,423K: .so mmap
+     68,203K: .art mmap
+     56,202K: .dex mmap
+     52,665K: Dalvik
+     13,473K: Dalvik Other
+     13,155K: .oat mmap
+      9,887K: Other mmap
+      7,632K: Stack
+      6,400K: .apk mmap
+      1,065K: Other dev
+        184K: Ashmem
+         32K: .jar mmap
+          0K: Cursor
+          0K: Gfx dev
+          0K: .ttf mmap
+          0K: EGL mtrack
+          0K: GL mtrack
+          0K: Other mtrack
+
+Total RAM: 1,437,396K (status normal)
+ Free RAM:   597,304K (  125,180K cached pss +    65,588K cached kernel +   406,536K free)
+ Used RAM:   926,068K (  697,156K used pss +   228,912K kernel)
+ Lost RAM:    70,821K
+     ZRAM:   132,248K physical used for   358,004K in swap (1,048,572K total swap)
+   Tuning: 128 (large 174), oom    81,920K, restore limit    27,306K (low-ram)
+--- DISK ---
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/block/mmcblk0p13 4.2G  2.0G  1.9G  52% /data
+/data/media           4.2G  2.0G  1.9G  52% /storage/emulated

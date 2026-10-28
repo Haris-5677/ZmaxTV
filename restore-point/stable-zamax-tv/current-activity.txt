@@ -1,0 +1,2 @@
+  mCurrentFocus=Window{ea6d5f u0 com.gathin.tvhome/com.gathin.tvhome.MainActivity}
+  mFocusedApp=AppWindowToken{858384d token=Token{8998be4 ActivityRecord{43a2377 u0 com.gathin.tvhome/.MainActivity t3143}}}

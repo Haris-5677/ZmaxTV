@@ -1,0 +1,17 @@
+Package Changes:
+  Sequence number=22
+  User 0:
+    seq=1, package=com.google.android.gms
+    seq=5, package=com.tcl.usercenter
+    seq=6, package=com.gathin.tvhome
+    seq=8, package=com.aistudio.movytv.rvkp
+    seq=19, package=com.jio.web.androidtv
+    seq=21, package=com.movytv.app
+
+
+Dexopt state:
+  Unable to find package: com.movytv.app
+
+
+Compiler stats:
+  Unable to find package: com.movytv.app

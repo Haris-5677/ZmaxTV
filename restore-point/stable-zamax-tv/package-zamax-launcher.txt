@@ -1,0 +1,131 @@
+Activity Resolver Table:
+  Schemes:
+      market:
+        375b266 com.gathin.tvhome/.AppLaunchActivity filter 2c74436
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "market"
+          Authority: "launch": -1
+
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        65c39a7 com.gathin.tvhome/.MainActivity filter f9e85b
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.HOME"
+          Category: "android.intent.category.DEFAULT"
+        65c39a7 com.gathin.tvhome/.MainActivity filter 95d8f8
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LEANBACK_LAUNCHER"
+      com.android.tv.action.VIEW_INPUTS:
+        cff9e54 com.gathin.tvhome/.InputsRequestActivity filter fb921d1
+          Action: "com.android.tv.action.VIEW_INPUTS"
+          Category: "android.intent.category.DEFAULT"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      com.gathin.tvhome.GUARD:
+        40c31fd com.gathin.tvhome/.GuardConfig filter b1edb6a
+          Action: "com.gathin.tvhome.GUARD"
+
+Service Resolver Table:
+  Non-Data Actions:
+      android.service.dreams.DreamService:
+        71a8ef2 com.gathin.tvhome/.ClockDream filter a81173f permission android.permission.BIND_DREAM_SERVICE
+          Action: "android.service.dreams.DreamService"
+          Category: "android.intent.category.DEFAULT"
+      android.service.notification.NotificationListenerService:
+        f08c943 com.gathin.tvhome/.GuardRevival filter 7c6480c permission android.permission.BIND_NOTIFICATION_LISTENER_SERVICE
+          Action: "android.service.notification.NotificationListenerService"
+      android.accessibilityservice.AccessibilityService:
+        e24bc0 com.gathin.tvhome/.HomeKeyService filter 43a75e permission android.permission.BIND_ACCESSIBILITY_SERVICE
+          Action: "android.accessibilityservice.AccessibilityService"
+        9eef0f9 com.gathin.tvhome/.InputKeyService filter ea88555 permission android.permission.BIND_ACCESSIBILITY_SERVICE
+          Action: "android.accessibilityservice.AccessibilityService"
+
+Preferred Activities User 0:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        9583a28 com.gathin.tvhome/.MainActivity
+         mMatch=0x100000 mAlways=true
+          Selected from:
+            com.gathin.tvhome/.MainActivity
+            com.tcl.keycustomfunctionservice/.FallbackHome
+            com.android.tv.settings/.system.FallbackHome
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.HOME"
+          Category: "android.intent.category.DEFAULT"
+
+Registered ContentProviders:
+  com.gathin.tvhome/.ThemeProvider:
+    Provider{1bea83e com.gathin.tvhome/.ThemeProvider}
+
+ContentProvider Authorities:
+  [com.gathin.tvhome.theme]:
+    Provider{1bea83e com.gathin.tvhome/.ThemeProvider}
+      applicationInfo=ApplicationInfo{364b69f com.gathin.tvhome}
+
+Key Set Manager:
+  [com.gathin.tvhome]
+      Signing KeySets: 38
+
+Packages:
+  Package [com.gathin.tvhome] (f8063ec):
+    userId=10070
+    pkg=Package{ca4a3b5 com.gathin.tvhome}
+    codePath=/data/app/com.gathin.tvhome-SEN300qI7HxnhXFL2eDiSQ==
+    resourcePath=/data/app/com.gathin.tvhome-SEN300qI7HxnhXFL2eDiSQ==
+    legacyNativeLibraryDir=/data/app/com.gathin.tvhome-SEN300qI7HxnhXFL2eDiSQ==/lib
+    primaryCpuAbi=null
+    secondaryCpuAbi=null
+    versionCode=10 minSdk=26 targetSdk=34
+    versionName=3.1
+    splits=[base]
+    apkSigningVersion=2
+    applicationInfo=ApplicationInfo{364b69f com.gathin.tvhome}
+    flags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION PARTIALLY_DIRECT_BOOT_AWARE ]
+    dataDir=/data/user/0/com.gathin.tvhome
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2026-10-28 16:02:24
+    firstInstallTime=2026-10-28 12:56:56
+    lastUpdateTime=2026-10-28 16:02:27
+    signatures=PackageSignatures{ef90a4a version:2, signatures:[e2e44e8f], past signatures:[]}
+    installPermissionsFixed=true
+    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    requested permissions:
+      android.permission.INTERNET
+      android.permission.ACCESS_NETWORK_STATE
+      android.permission.ACCESS_WIFI_STATE
+      android.permission.ACCESS_FINE_LOCATION
+      android.permission.WRITE_SECURE_SETTINGS
+      yandex.tv.permission.ACCESS_TV_SOURCE
+    install permissions:
+      android.permission.INTERNET: granted=true
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+      android.permission.ACCESS_WIFI_STATE: granted=true
+    User 0: ceDataInode=-4294942872 installed=true hidden=false suspended=false stopped=false notLaunched=false enabled=0 instant=false virtual=false
+      gids=[3003]
+      runtime permissions:
+        android.permission.ACCESS_FINE_LOCATION: granted=true
+
+Package Changes:
+  Sequence number=22
+  User 0:
+    seq=1, package=com.google.android.gms
+    seq=5, package=com.tcl.usercenter
+    seq=6, package=com.gathin.tvhome
+    seq=8, package=com.aistudio.movytv.rvkp
+    seq=19, package=com.jio.web.androidtv
+    seq=21, package=com.movytv.app
+
+
+Dexopt state:
+  [com.gathin.tvhome]
+    path: /data/app/com.gathin.tvhome-SEN300qI7HxnhXFL2eDiSQ==/base.apk
+      arm: [status=speed] [reason=unknown]
+
+
+Compiler stats:
+  [com.gathin.tvhome]
+     base.apk - 3080

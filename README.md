@@ -87,6 +87,8 @@ zamax-tv-home/
 │   └── b64push.py                          # Chunked base64 file transfer utility
 ├── restore-point/
 │   └── stable-zamax-tv/                    # Complete TV status snapshot & restore scripts
+├── push-to-github.bat                      # 1-click script to push to your GitHub repo
+├── push-to-github.ps1                      # PowerShell GitHub push automation
 ├── build.gradle                            # Project build script
 ├── settings.gradle                         # Gradle settings
 └── README.md                               # Project documentation
